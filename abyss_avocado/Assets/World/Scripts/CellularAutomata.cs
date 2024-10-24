@@ -30,6 +30,7 @@ public class CellularAutomata
         this.fillPercent = fillPercent;
 
         var map = new bool[width, height];
+        
         RandomFill(map, rng, fillPercent);
 
         // Repeatedly smooth the map
@@ -84,7 +85,7 @@ public class CellularAutomata
             for (int y = 0; y < height; y++)
             {
                 // Map boundaries are always filled
-                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                if (x == 0 || x == width - 1)
                 {
                     map[x, y] = true;
                 }

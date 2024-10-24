@@ -16,7 +16,19 @@ public class MapDisplay : MonoBehaviour
         tilemap.transform.position = position;
     }
 
-    public void DisplayMap(TileType[,] map)
+    // Create tiles for new chunk
+    public void Create(Chunk chunk)
+    {
+
+    }
+
+    // Clear tiles to remove chunk
+    public void Clear(Chunk chunk)
+    {
+
+    }
+
+    public void Display(TileType[,] map)
     {
         // Clear any existing tiles before redrawing
         tilemap.ClearAllTiles();
@@ -42,7 +54,7 @@ public class MapDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayMap(bool[,] map)
+    public void Display(bool[,] map)
     {
         // Clear any existing tiles before redrawing
         tilemap.ClearAllTiles();
