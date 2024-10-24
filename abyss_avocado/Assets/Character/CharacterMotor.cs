@@ -8,10 +8,12 @@ public class CharacterMotor : MonoBehaviour
     private float jumpSpeed = 500f;
     private bool isGrounded = true;
     private Rigidbody2D body;
+    private SpriteRenderer renderer;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -23,10 +25,12 @@ public class CharacterMotor : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * movementSpeed * Time.deltaTime;
+            renderer.flipX = true;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+            renderer.flipX = false;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
@@ -47,7 +51,6 @@ public class CharacterMotor : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log(col);
         isGrounded = true;
     }
 
