@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Chunk
 {
-    private Vector2 position;
-    private bool[,] grid;
+    public int index;
+    public bool[,] grid;
 
-    public Chunk(Vector2 position, bool[,] grid)
+    public Chunk(int index, bool[,] grid)
     {
-        this.position = position;
+        this.index = index;
         this.grid = grid;
     }
     

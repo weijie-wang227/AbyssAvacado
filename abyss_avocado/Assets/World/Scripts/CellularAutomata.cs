@@ -29,7 +29,7 @@ public class CellularAutomata
         this.smoothSteps = smoothSteps;
         this.fillPercent = fillPercent;
 
-        var map = new bool[width, height];
+        var map = new bool[height, width];
         
         RandomFill(map, rng, fillPercent);
 
@@ -73,7 +73,7 @@ public class CellularAutomata
     {
         foreach (var cell in cells)
         {
-            map[cell.x, cell.y] = !map[cell.x, cell.y];
+            map[cell.y, cell.x] = !map[cell.y, cell.x];
         }
     }
 
@@ -87,18 +87,18 @@ public class CellularAutomata
                 // Map boundaries are always filled
                 if (x == 0 || x == width - 1)
                 {
-                    map[x, y] = true;
+                    map[y, x] = true;
                 }
                 else
                 {
-                    map[x, y] = rng.Next(0, 100) < fillPercent;
+                    map[y, x] = rng.Next(0, 100) < fillPercent;
                 }
             }
         }
     }
     private bool[,] SmoothMap(bool[,] map)
     {
-        bool[,] mapCopy = new bool[width, height];
+        bool[,] mapCopy = new bool[height, width];
 
         for (int x = 0; x < width; x++)
         {
@@ -108,18 +108,18 @@ public class CellularAutomata
 
                 if (filledNeighbors > 4)
                 {
-                    mapCopy[x, y] = true;
+                    mapCopy[y, x] = true;
                     // If the cell has less than "neighborThreshold" filled neighbors,
                     // then clear the cell
                 }
                 else if (filledNeighbors < 4)
                 {
-                    mapCopy[x, y] = false;
+                    mapCopy[y, x] = false;
                 }
                 // Otherwise remain
                 else
                 {
-                    mapCopy[x, y] = map[x, y];
+                    mapCopy[y, x] = map[y, x];
                 }
             }
         }
@@ -131,20 +131,20 @@ public class CellularAutomata
     private List<List<Vector2Int>> GetRegions(bool[,] map, bool cellType)
     {
         var regions = new List<List<Vector2Int>>();
-        bool[,] visited = new bool[width, height];
+        bool[,] visited = new bool[height, width];
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                if (map[x, y] != cellType || visited[x, y]) continue;
+                if (map[y, x] != cellType || visited[y, x]) continue;
 
                 var region = GetRegionCells(x, y, map);
                 regions.Add(region);
                 // Mark all cells in the region as visited
                 foreach (var cell in region)
                 {
-                    visited[cell.x, cell.y] = true;
+                    visited[cell.y, cell.x] = true;
                 }
             }
         }
@@ -158,14 +158,14 @@ public class CellularAutomata
     {
         // If the given cell is filled, find all connected filled cells
         // If the given cell is empty, find all connected empty cells
-        bool cellType = map[startX, startY];
+        bool cellType = map[startY, startX];
 
         var regionCells = new List<Vector2Int>(); // Maintain list of visited cells
         var queue = new Queue<Vector2Int>(); // Queue of cells to explore
         queue.Enqueue(new Vector2Int(startX, startY)); // Add start cell to queue
 
-        bool[,] visited = new bool[width, height]; // Track which cells have already been visited   
-        visited[startX, startY] = true;
+        bool[,] visited = new bool[height, width]; // Track which cells have already been visited   
+        visited[startY, startX] = true;
 
         while (queue.Count != 0)
         {
@@ -175,10 +175,10 @@ public class CellularAutomata
             var neighbors = GetNeighbors(cell.x, cell.y, map, true);
             foreach (var neighbor in neighbors)
             {
-                if (InBounds(neighbor, map) && !visited[neighbor.x, neighbor.y] && map[neighbor.x, neighbor.y] == cellType)
+                if (InBounds(neighbor, map) && !visited[neighbor.y, neighbor.x] && map[neighbor.y, neighbor.x] == cellType)
                 {
                     queue.Enqueue(neighbor);
-                    visited[neighbor.x, neighbor.y] = true;
+                    visited[neighbor.y, neighbor.x] = true;
                 }
             }
         }
@@ -189,11 +189,11 @@ public class CellularAutomata
 
     protected bool InBounds(Vector2Int cell, bool[,] map)
     {
-        return InBounds(cell.x, cell.y, map);
+        return InBounds(cell.y, cell.x, map);
     }
     protected bool InBounds(int x, int y, bool[,] map)
     {
-        return x >= 0 && y >= 0 && x < map.GetLength(0) && y < map.GetLength(1);
+        return x >= 0 && y >= 0 && x < map.GetLength(1) && y < map.GetLength(0);
     }
 
     // Get neighboring cells in either 8-directions or only the 4 orthogonal directions
@@ -234,7 +234,7 @@ public class CellularAutomata
                 }
                 else
                 {
-                    count += map[neighborX, neighborY] ? 1 : 0;
+                    count += map[neighborY, neighborX] ? 1 : 0;
                 }
             }
         }

@@ -4,41 +4,50 @@ using UnityEngine;
 // Generates 1 chunk
 public class ChunkGenerator : MonoBehaviour
 {
-    [SerializeField] protected int width; // Number of tile columns
-    [SerializeField] protected int height; // Number of tile rows
-    [SerializeField, Range(0, 100)] protected int fillPercent;
-    [SerializeField] protected int smoothSteps;
+    [SerializeField] private int rows; // Number of tile rows
+    [SerializeField] private int cols; // Number of tile columns
+    [SerializeField, Range(0, 100)] private int fillPercent;
+    [SerializeField] private int smoothSteps;
 
-    [SerializeField] protected string seed;
-    [SerializeField] protected bool useRandomSeed;
+    [SerializeField] private string seed;
+    [SerializeField] private bool useRandomSeed;
 
     private CellularAutomata genAlgo;
 
     private int chunkLimit = 4;
     private Queue<Chunk> chunks = new();
-    private Vector2 lastPosition; // Position of last chunk
-    
+    private int currentIndex = 0; // Index of newest chunk
+
+    private Transform player; // Reference to player
+
     [SerializeField] private MapDisplay mapDisplay;
-  
+    // Get height of chunk in world units
+    private int ChunkHeight => rows; // The height of 1 chunk in world units
+
     void Start()
     {
-        genAlgo = new CellularAutomata(width, height, smoothSteps, fillPercent);
-        
-        
+        genAlgo = new CellularAutomata(cols, rows, smoothSteps, fillPercent);
+
+        LoadChunk();
     }
 
     private void Update()
     {
         // Keep track of player position
         // If player is halfway through the height of the current chunk, generate a new chunk
+        //if (player.position.y <= lastPosition.y - ChunkHeight / 2)
+        //{
+        //    LoadChunk(lastPosition);
+        //    lastPosition.y += ChunkHeight; // Update position for next chunk
 
+        //}
     }
 
     // Generate a chunk and display it on the map
     // Despawn old chunks if necessary
     public void LoadChunk() 
     {
-        var chunk = GenerateChunk(lastPosition);
+        var chunk = GenerateChunk(currentIndex);
         chunks.Enqueue(chunk);
         mapDisplay.Create(chunk);
 
@@ -48,9 +57,10 @@ public class ChunkGenerator : MonoBehaviour
             var oldChunk = chunks.Dequeue();
             mapDisplay.Clear(oldChunk);
         }
+        currentIndex += 1;
     }
 
-    public Chunk GenerateChunk(Vector2 position)
+    private Chunk GenerateChunk(int index)
     {
         if (useRandomSeed)
         {
@@ -58,9 +68,9 @@ public class ChunkGenerator : MonoBehaviour
         }
         System.Random rng = new(seed.GetHashCode());
 
-        var map = genAlgo.GenerateMap(width, height, smoothSteps, fillPercent, rng);
+        var map = genAlgo.GenerateMap(cols, rows, smoothSteps, fillPercent, rng);
 
-        var chunk = new Chunk(position, map);
+        var chunk = new Chunk(index, map);
         return chunk;
     }
 }
