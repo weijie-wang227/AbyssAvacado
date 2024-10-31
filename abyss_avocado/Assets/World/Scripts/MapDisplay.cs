@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapDisplay : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-    [SerializeField] private Vector2 position; // Bottom-left corner position
+    [SerializeField] private Vector2 position; // top-left corner position
 
     [SerializeField] private TileBase fillTile;
     [SerializeField] private TileBase emptyTile;

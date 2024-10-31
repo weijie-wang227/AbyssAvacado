@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Generates 1 chunk
-public class ChunkGenerator : MonoBehaviour
+public class WorldGenerator : MonoBehaviour
 {
-    [SerializeField] private int rows; // Number of tile rows
-    [SerializeField] private int cols; // Number of tile columns
+    [SerializeField] private int chunkHeight; // Number of tile rows per chunk
+    [SerializeField] private int chunkWidth; // Number of tile columns per chunk
     [SerializeField, Range(0, 100)] private int fillPercent;
     [SerializeField] private int smoothSteps;
 
@@ -14,30 +14,30 @@ public class ChunkGenerator : MonoBehaviour
 
     private CellularAutomata genAlgo;
 
+
     private int chunkLimit = 4;
     private Queue<Chunk> chunks = new();
     private int currentIndex = 0; // Index of newest chunk
+    private int NextLoadPosition => -chunkHeight * (currentIndex- 1) - chunkHeight / 2; // When player reaches this y position, load the next chunk
 
-    private Player player; // Reference to player
-    private int NextLoadPosition => -rows * (currentIndex- 1) - rows / 2; // When player reaches this y position, load the next chunk
+    private Player player; // Reference to player singleton
 
-    [SerializeField] private MapDisplay mapDisplay;
+    [SerializeField] private MapDisplay mapDisplay; // Creates tilemap based on the grid
+
+    [SerializeField] private Spawner spawner; // Manages spawning of enemies and items
 
     void Start()
     {
-        genAlgo = new CellularAutomata(cols, rows, smoothSteps, fillPercent);
-        LoadChunk();
-
+        genAlgo = new CellularAutomata(chunkWidth, chunkHeight, smoothSteps, fillPercent);
         player = Player.Instance;
-        Debug.Log(NextLoadPosition);
+
+        LoadChunk();
     }
 
     private void Update()
     {
         // Keep track of player position
         // If player is halfway through the height of the current chunk, generate a new chunk
-
-
         if (player.transform.position.y <= NextLoadPosition)
         {
             LoadChunk();
@@ -52,6 +52,7 @@ public class ChunkGenerator : MonoBehaviour
         var chunk = GenerateChunk(currentIndex);
         chunks.Enqueue(chunk);
         mapDisplay.Create(chunk);
+        spawner.PopulateChunk(chunk);
 
         // Despawn oldest chunk if necessary
         if (chunks.Count > chunkLimit)
@@ -70,9 +71,9 @@ public class ChunkGenerator : MonoBehaviour
         }
         System.Random rng = new(seed.GetHashCode());
 
-        var map = genAlgo.GenerateMap(cols, rows, smoothSteps, fillPercent, rng);
+        var map = genAlgo.GenerateMap(chunkWidth, chunkHeight, smoothSteps, fillPercent, rng);
 
-        var chunk = new Chunk(index, map);
+        var chunk = new Chunk(index, new Vector2(0, -index * chunkHeight), map);
         return chunk;
     }
 }

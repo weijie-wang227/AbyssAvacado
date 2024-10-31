@@ -1,12 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ChunkGenerator), true)]
+[CustomEditor(typeof(WorldGenerator), true)]
 public class MapGeneratorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        ChunkGenerator generator = (ChunkGenerator)target;
+        WorldGenerator generator = (WorldGenerator)target;
 
         DrawDefaultInspector();
 
