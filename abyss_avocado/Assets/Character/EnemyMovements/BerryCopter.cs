@@ -9,7 +9,6 @@ public class BerryCopter : MonoBehaviour
     private float dashDuration = 0.5f;
     private float dashTimer = 0f;
     private float timer = 0f;
-    [SerializeField] private Transform player;
     private float movementSpeed = 5.0f;
     private Vector3 playerPosition;
 
@@ -22,15 +21,18 @@ public class BerryCopter : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > cooldown) {
+        if (timer > cooldown)
+        {
             timer = 0;
             StartCoroutine(dash());
         }
     }
 
-    private IEnumerator dash () {
-        playerPosition = player.position;
-        while (dashTimer < dashDuration) { 
+    private IEnumerator dash()
+    {
+        playerPosition = Player.Instance.transform.position;
+        while (dashTimer < dashDuration)
+        {
             transform.position += (playerPosition - transform.position).normalized * movementSpeed * Time.deltaTime;
             dashTimer += Time.deltaTime;
             yield return null;
