@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapDisplay : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-    [SerializeField] private Vector2 position; // Bottom-left corner position
+    [SerializeField] private Vector2 position; // top-left corner position
 
     [SerializeField] private TileBase fillTile;
     [SerializeField] private TileBase emptyTile;
@@ -21,7 +21,6 @@ public class MapDisplay : MonoBehaviour
     {
         var grid = chunk.grid;
         var yOffset = chunk.index * grid.GetLength(0);
-        Debug.Log(yOffset);
 
         for (int y = 0; y < grid.GetLength(0); y++)
         {
