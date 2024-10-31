@@ -53,11 +53,12 @@ public class CharacterMotor : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         isGrounded = true;
-        if (col.collider.CompareTag("Enemy"))
-		{
-			body.AddForce((col.transform.position - transform.position).normalized * -500f);
-		}
-	}
+        if (col.collider.CompareTag("Enemy") && !Player.Instance.invulnerable)
+        {
+            body.AddForce((col.transform.position - transform.position).normalized * -500f);
+            Player.Instance.Damage(2);
+        }
+    }
 
 }
 
