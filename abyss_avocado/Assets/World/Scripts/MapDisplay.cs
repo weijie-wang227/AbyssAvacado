@@ -27,7 +27,7 @@ public class MapDisplay : MonoBehaviour
         {
             for (int x = 0; x < grid.GetLength(1); x++)
             {
-                var pos = new Vector3Int(x, y - yOffset);
+                var pos = new Vector3Int(x, -y - 1 - yOffset);
 
                 if (grid[y, x])
                 {

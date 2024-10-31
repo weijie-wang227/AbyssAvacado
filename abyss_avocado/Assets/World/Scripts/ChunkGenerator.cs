@@ -21,24 +21,23 @@ public class ChunkGenerator : MonoBehaviour
     private Transform player; // Reference to player
 
     [SerializeField] private MapDisplay mapDisplay;
-    // Get height of chunk in world units
-    private int ChunkHeight => rows; // The height of 1 chunk in world units
 
     void Start()
     {
         genAlgo = new CellularAutomata(cols, rows, smoothSteps, fillPercent);
 
         LoadChunk();
+        int height = rows * currentIndex;
     }
 
     private void Update()
     {
         // Keep track of player position
         // If player is halfway through the height of the current chunk, generate a new chunk
-        //if (player.position.y <= lastPosition.y - ChunkHeight / 2)
+
+        //if (player.position.y <= rows * currentIndex)
         //{
-        //    LoadChunk(lastPosition);
-        //    lastPosition.y += ChunkHeight; // Update position for next chunk
+        //    LoadChunk();
 
         //}
     }
