@@ -9,7 +9,6 @@ public class CellularAutomata
     private int height;
     private int smoothSteps;
     private int fillPercent;
-    private bool singleCavern;
 
     public static readonly Vector2Int[] directions = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0), new(-1, -1), new(-1, 1), new(1, -1), new Vector2Int(1, 1) };
     public static readonly Vector2Int[] orthogonalDirections = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
@@ -41,12 +40,8 @@ public class CellularAutomata
 
         var emptyRegions = GetRegions(map, false);
 
-        // If there is more than 1 empty region, fill all other empty regions except the largest region
-        if (singleCavern && emptyRegions.Count > 1)
-        {
-            int largestSize = emptyRegions.Max(region => region.Count);
-            PruneRegions(map, emptyRegions, largestSize);
-        }
+        // Remove regions smaller than 10 cells
+        //PruneRegions(map, emptyRegions, 10);
 
         return map;
     }
@@ -62,18 +57,12 @@ public class CellularAutomata
             var region = regions[i];
             if (region.Count < minRegionSize)
             {
-                InvertRegion(map, region);
+                foreach (var cell in region)
+                {
+                    map[cell.y, cell.x] = !map[cell.y, cell.x];
+                }
                 regions.Remove(region);
             }
-        }
-    }
-
-    // Invert the boolean value for every cell in the given set 
-    private void InvertRegion(bool[,] map, List<Vector2Int> cells)
-    {
-        foreach (var cell in cells)
-        {
-            map[cell.y, cell.x] = !map[cell.y, cell.x];
         }
     }
 
@@ -193,7 +182,7 @@ public class CellularAutomata
     }
     protected bool InBounds(int x, int y, bool[,] map)
     {
-        return x >= 0 && y >= 0 && x < map.GetLength(1) && y < map.GetLength(0);
+        return x >= 0 && y >= 0 && x < width && y < height;
     }
 
     // Get neighboring cells in either 8-directions or only the 4 orthogonal directions
@@ -227,10 +216,14 @@ public class CellularAutomata
             {
                 if (x == neighborX && y == neighborY) continue;
 
-                // Cells outside the map bounds are counted as filled
-                if (!InBounds(neighborX, neighborY, map))
+                // Cells outside the x-bounds of the map are counted as filled
+                if (neighborX <= 0 || neighborX >= width)
                 {
                     count++;
+                // Cells outside the y-bounds of the map are counted as unfilled
+                } else if (neighborY <= 0 || neighborY >= height)
+                {
+                    continue;
                 }
                 else
                 {
