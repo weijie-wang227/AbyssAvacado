@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
     public int health = 10;
     public bool invulnerable = false;
-
     private void Awake()
     {
         // Singleton boilerplate

@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,17 +8,31 @@ public class CharacterMotor : MonoBehaviour
 {
     private float movementSpeed = 3f;
     private float jumpSpeed = 500f;
-    private bool isGrounded = true;
+    [SerializeField] private bool isGrounded = false;
     private Rigidbody2D body;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
+    private Vector2 currentPos;
+    private Transform test;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
+        test = transform.GetChild(0);
     }
     void Update()
     {
+        currentPos = transform.position;
+        test.position = currentPos - new Vector2(-0.25f, 0.5f);
+        if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f)))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
         if (isGrounded)
         {
             body.gravityScale = 2.1f;
@@ -52,13 +67,13 @@ public class CharacterMotor : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        isGrounded = true;
         if (col.collider.CompareTag("Enemy") && !Player.Instance.invulnerable)
         {
             body.AddForce((col.transform.position - transform.position).normalized * -500f);
-            Player.Instance.Damage(2);
         }
     }
+
+
 
 }
 
