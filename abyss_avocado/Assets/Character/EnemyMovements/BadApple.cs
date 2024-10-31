@@ -1,29 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BadApple : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] private Transform player;
-    private char direction;
-    private float timer;
-    private float countDown;
-    private bool isGrounded = false;
+    public float speed;
+    public float jumpSpeed;
 
+    private Rigidbody2D body;
+    private int direction = 1;
+
+    // Start is called before the first frame update
     void Start()
     {
-        direction = 'r';
+        body = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        body.velocity = new Vector2(speed * direction, body.velocity.y);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.layer != 6)
+        {
+    public float speed;
+	public float jumpSpeed;
+
+	private Rigidbody2D body;
+    private int direction = 1;
+
+	// Start is called before the first frame update
+	void Start()
     }
+        body = GetComponent<Rigidbody2D>();
+	}
+    {
+        if (collision.gameObject.layer != 6)
+        {
+            body.AddForce(Vector3.up * jumpSpeed);
+        body.velocity = new Vector2(speed * direction, body.velocity.y);
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.layer != 6)
+		{
+			direction *= -1;
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.layer != 6)
+		{
+			body.AddForce(Vector3.up * jumpSpeed);
+		}
+	}
 }

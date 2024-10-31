@@ -373,8 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1471332682}
   position: {x: 0, y: 0}
-  floorTile: {fileID: 11400000, guid: 04d4f8a7843fa8e4f954a341ff0d2bd4, type: 2}
-  wallTile: {fileID: 11400000, guid: b2bfd80a8ce768c46a8a91aa5a2fb116, type: 2}
+  fillTile: {fileID: 11400000, guid: b2bfd80a8ce768c46a8a91aa5a2fb116, type: 2}
+  emptyTile: {fileID: 11400000, guid: 04d4f8a7843fa8e4f954a341ff0d2bd4, type: 2}
 --- !u!156049354 &651159455
 Grid:
   m_ObjectHideFlags: 0
@@ -432,10 +432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b48ab8d6fa79b4d8fc5a9d1cef7042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 64
-  height: 64
-  fillPercent: 50
-  smoothSteps: 4
+  cols: 16
+  rows: 32
+  fillPercent: 40
+  smoothSteps: 2
   seed: 0
   useRandomSeed: 1
   mapDisplay: {fileID: 651159454}

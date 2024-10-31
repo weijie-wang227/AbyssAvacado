@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CharacterMotor : MonoBehaviour
 {
@@ -52,7 +53,11 @@ public class CharacterMotor : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         isGrounded = true;
-    }
+        if (col.collider.CompareTag("Enemy"))
+		{
+			body.AddForce((col.transform.position - transform.position).normalized * -500f);
+		}
+	}
 
 }
 
