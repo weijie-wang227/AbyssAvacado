@@ -6,6 +6,28 @@ using UnityEngine.Rendering;
 public class BadApple : MonoBehaviour
 {
     public float speed;
+    public float jumpSpeed;
+
+    private Rigidbody2D body;
+    private int direction = 1;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        body.velocity = new Vector2(speed * direction, body.velocity.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != 6)
+        {
+    public float speed;
 	public float jumpSpeed;
 
 	private Rigidbody2D body;
@@ -13,13 +35,13 @@ public class BadApple : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+    }
         body = GetComponent<Rigidbody2D>();
 	}
-
-    // Update is called once per frame
-    void Update()
     {
+        if (collision.gameObject.layer != 6)
+        {
+            body.AddForce(Vector3.up * jumpSpeed);
         body.velocity = new Vector2(speed * direction, body.velocity.y);
 	}
 
