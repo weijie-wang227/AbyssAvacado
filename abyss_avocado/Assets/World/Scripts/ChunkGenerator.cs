@@ -18,16 +18,18 @@ public class ChunkGenerator : MonoBehaviour
     private Queue<Chunk> chunks = new();
     private int currentIndex = 0; // Index of newest chunk
 
-    private Transform player; // Reference to player
+    private Player player; // Reference to player
+    private int NextLoadPosition => -rows * (currentIndex- 1) - rows / 2; // When player reaches this y position, load the next chunk
 
     [SerializeField] private MapDisplay mapDisplay;
 
     void Start()
     {
         genAlgo = new CellularAutomata(cols, rows, smoothSteps, fillPercent);
-
         LoadChunk();
-        int height = rows * currentIndex;
+
+        player = Player.Instance;
+        Debug.Log(NextLoadPosition);
     }
 
     private void Update()
@@ -35,11 +37,12 @@ public class ChunkGenerator : MonoBehaviour
         // Keep track of player position
         // If player is halfway through the height of the current chunk, generate a new chunk
 
-        //if (player.position.y <= rows * currentIndex)
-        //{
-        //    LoadChunk();
 
-        //}
+        if (player.transform.position.y <= NextLoadPosition)
+        {
+            LoadChunk();
+            Debug.Log("Chunk loaded");
+        }
     }
 
     // Generate a chunk and display it on the map

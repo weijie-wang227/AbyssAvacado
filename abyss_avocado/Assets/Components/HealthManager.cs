@@ -8,6 +8,8 @@ public class HealthManager : MonoBehaviour, IDamageable
 
     float IDamageable.HitPoints => health;
 
+    public event EventHandler HealthChanged;
+
     void Start()
     {
         health = maxHealth;
@@ -24,11 +26,13 @@ public class HealthManager : MonoBehaviour, IDamageable
             health = 0;
             Die();
         }
+        HealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Heal(float _health)
     {
         health += Math.Min(_health, maxHealth - health); // prevent overhealing
+        HealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void Die()

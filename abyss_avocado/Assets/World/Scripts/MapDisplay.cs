@@ -21,7 +21,6 @@ public class MapDisplay : MonoBehaviour
     {
         var grid = chunk.grid;
         var yOffset = chunk.index * grid.GetLength(0);
-        Debug.Log(yOffset);
 
         for (int y = 0; y < grid.GetLength(0); y++)
         {
