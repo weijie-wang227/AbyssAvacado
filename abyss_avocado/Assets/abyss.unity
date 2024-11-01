@@ -227,28 +227,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6131149285496617349, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
-      propertyPath: spawner
-      value: 
-      objectReference: {fileID: 1307680908}
-    - target: {fileID: 6131149285496617349, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
-      propertyPath: chunkWidth
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131149285496617349, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
       propertyPath: mapDisplay
       value: 
       objectReference: {fileID: 227656368}
-    - target: {fileID: 6131149285496617349, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
-      propertyPath: chunkHeight
-      value: 64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4488607222844905450, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1307680908}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
 --- !u!1 &404240510
 GameObject:
@@ -464,27 +449,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4514378703585126553, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
   m_PrefabInstance: {fileID: 3867406829135221557}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1307680905 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4488607222844905450, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
-  m_PrefabInstance: {fileID: 346051819}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1307680908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307680905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40fb034acc3286d41a438853e27fc8da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPool:
-  - element: {fileID: 1360433667768284290, guid: ffdaac4f460980a4dbb476fc6ad22e45, type: 3}
-    weight: 1
-  enemiesPerChunk: 5
 --- !u!1 &1482086964
 GameObject:
   m_ObjectHideFlags: 0

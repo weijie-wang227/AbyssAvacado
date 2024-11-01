@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private Camera cam;
     private Rigidbody2D rb;
     [SerializeField] private float force;
+    [SerializeField] private float damage;
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -23,10 +24,12 @@ public class Bullet : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collide");
+        if (collision.collider.TryGetComponent<IDamageable>(out var target))
+        {
+            target.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }

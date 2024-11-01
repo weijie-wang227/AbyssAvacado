@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1360433667768284290
+--- !u!1 &6290760625784917913
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8740310174573015410}
-  - component: {fileID: 3858343578419371613}
-  - component: {fileID: 7672668925728310304}
-  - component: {fileID: 7812654963926999533}
-  - component: {fileID: 6418950856127834381}
+  - component: {fileID: 3558007051530315366}
+  - component: {fileID: 6023335971329801611}
+  - component: {fileID: 1153151674512358054}
+  - component: {fileID: 8144962130404119016}
+  - component: {fileID: 5558552070903878432}
+  - component: {fileID: 5170102957670964337}
+  - component: {fileID: 5306334984774254309}
   m_Layer: 0
   m_Name: BerryCopter
   m_TagString: Untagged
@@ -20,28 +22,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8740310174573015410
+--- !u!4 &3558007051530315366
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360433667768284290}
+  m_GameObject: {fileID: 6290760625784917913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.16, y: 0.68, z: 0}
+  m_LocalPosition: {x: 4.44, y: 0.56, z: 0}
   m_LocalScale: {x: 2.9037871, y: 2.9842002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3858343578419371613
+--- !u!212 &6023335971329801611
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360433667768284290}
+  m_GameObject: {fileID: 6290760625784917913}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,13 +89,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7672668925728310304
+--- !u!61 &1153151674512358054
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360433667768284290}
+  m_GameObject: {fileID: 6290760625784917913}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -132,14 +134,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.28, y: 0.21}
   m_EdgeRadius: 0
---- !u!50 &7812654963926999533
+--- !u!50 &8144962130404119016
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360433667768284290}
+  m_GameObject: {fileID: 6290760625784917913}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -157,17 +159,51 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6418950856127834381
+--- !u!114 &5558552070903878432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360433667768284290}
+  m_GameObject: {fileID: 6290760625784917913}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feb1c3b35cce7b8489331d7a58c659d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5170102957670964337
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290760625784917913}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5aa9399d9fbcd2b43a23e7852d193d43, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5306334984774254309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290760625784917913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e60f030aed209145a9f3671fe019c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20

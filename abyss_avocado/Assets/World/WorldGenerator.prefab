@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4781877319802602784}
   - component: {fileID: 6131149285496617349}
+  - component: {fileID: 7584770766035455027}
   m_Layer: 0
   m_Name: WorldGenerator
   m_TagString: Untagged
@@ -44,10 +45,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b48ab8d6fa79b4d8fc5a9d1cef7042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 64
-  cols: 16
+  chunkHeight: 64
+  chunkWidth: 16
   fillPercent: 40
   smoothSteps: 2
   seed: 0
   useRandomSeed: 1
   mapDisplay: {fileID: 0}
+  spawner: {fileID: 7584770766035455027}
+--- !u!114 &7584770766035455027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4488607222844905450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fb034acc3286d41a438853e27fc8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPool:
+  - element: {fileID: 1360433667768284290, guid: ffdaac4f460980a4dbb476fc6ad22e45, type: 3}
+    weight: 1
+  enemiesPerChunk: 5
