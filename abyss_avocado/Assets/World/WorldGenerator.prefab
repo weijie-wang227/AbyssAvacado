@@ -66,6 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPool:
-  - element: {fileID: 1360433667768284290, guid: ffdaac4f460980a4dbb476fc6ad22e45, type: 3}
-    weight: 1
+  - element: {fileID: 6290760625784917913, guid: 79f4d86a425556447a1ace342b2b3a87, type: 3}
+    weight: 0.5
+  - element: {fileID: 1403024885736690757, guid: 3fefd68ab02c09847b9d7f8bd47ac8de, type: 3}
+    weight: 0.5
   enemiesPerChunk: 5
