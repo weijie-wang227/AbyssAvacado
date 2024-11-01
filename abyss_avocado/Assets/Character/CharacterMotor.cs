@@ -8,23 +8,24 @@ public class CharacterMotor : MonoBehaviour
 {
     private float movementSpeed = 3f;
     private float jumpSpeed = 500f;
-    [SerializeField] private bool isGrounded = false;
+    private bool isGrounded = false;
+    private bool rightContact = false;
+    private bool leftContact = false;
     private Rigidbody2D body;
     private new SpriteRenderer renderer;
     private Vector2 currentPos;
-    private Transform test;
+    private LayerMask mask;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
-        test = transform.GetChild(0);
+        mask = LayerMask.GetMask("Platform");
     }
     void Update()
     {
         currentPos = transform.position;
-        test.position = currentPos - new Vector2(-0.25f, 0.5f);
-        if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f)))
+        if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f), mask))
         {
             isGrounded = true;
         }
@@ -33,17 +34,35 @@ public class CharacterMotor : MonoBehaviour
             isGrounded = false;
         }
 
+        if (Physics2D.Linecast(currentPos - new Vector2(-0.35f, -0.5f), currentPos - new Vector2(-0.35f, 0.4f), mask))
+        {
+            rightContact = true;
+        }
+        else
+        {
+            rightContact = false;
+        }
+
+        if (Physics2D.Linecast(currentPos - new Vector2(0.35f, -0.5f), currentPos - new Vector2(0.35f, 0.4f), mask))
+        {
+            leftContact = true;
+        }
+        else
+        {
+            leftContact = false;
+        }
+
         if (isGrounded)
         {
             body.gravityScale = 2.1f;
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && !leftContact)
         {
             transform.position += Vector3.left * movementSpeed * Time.deltaTime;
             renderer.flipX = true;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && !rightContact)
         {
             transform.position += Vector3.right * movementSpeed * Time.deltaTime;
             renderer.flipX = false;
@@ -52,7 +71,7 @@ public class CharacterMotor : MonoBehaviour
         {
             if (!isGrounded)
             {
-                body.gravityScale += 2;
+                body.gravityScale += 1.5f;
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
