@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9205839468311981217}
   - component: {fileID: -529391226515774796}
   - component: {fileID: 1533287891245925094}
+  - component: {fileID: 5984561061644120510}
   m_Layer: 0
   m_Name: BadApple
   m_TagString: Enemy
@@ -210,6 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  iframes: 1
+  deathHandler: {fileID: 1533287891245925094}
 --- !u!114 &1533287891245925094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +225,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0379791c2bbcfb4993301bc352db4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5984561061644120510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403024885736690757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb150b3c35077714b86a8258518a2f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactDamage: 10

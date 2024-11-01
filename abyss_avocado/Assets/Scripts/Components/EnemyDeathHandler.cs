@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class EnemyDeathHandler : MonoBehaviour, IDeathHandler
+public class EnemyDeathHandler : DeathHandler
 {
-    public void HandleDeath()
+    public override void HandleDeath()
     {
         Destroy(gameObject);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 // Attach this script to player gameobject
-public class Player : MonoBehaviour, IDeathHandler
+public class Player : DeathHandler
 {
     public static Player Instance { get; private set; }
     public HealthManager HealthManager { get; private set; }
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDeathHandler
         HealthManager = GetComponent<HealthManager>();
     }
 
-    public void HandleDeath()
+    public override void HandleDeath()
     {
         print("Player died");
     }

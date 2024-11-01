@@ -15,7 +15,7 @@ public class HealthManager : MonoBehaviour, IDamageable
 
     public event EventHandler HealthChanged;
 
-    [SerializeField] private IDeathHandler deathHandler;
+    [SerializeField] private DeathHandler deathHandler;
 
     void Start()
     {
@@ -25,6 +25,8 @@ public class HealthManager : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (invulnerable) { return; }
+
+        print($"{gameObject.name} received {damage} damage");
 
         if (damage < health)
         {

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Entities that can die should implement this interface
-public interface IDeathHandler
+public abstract class DeathHandler : MonoBehaviour
 {
-    void HandleDeath();
+    public abstract void HandleDeath();
 }
