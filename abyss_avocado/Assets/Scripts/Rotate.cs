@@ -1,7 +1,9 @@
 using System;
+using Unity.IO.LowLevel.Unsafe;
+using UnityEditor.Animations;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private Camera cam;
@@ -11,6 +13,11 @@ public class Rotate : MonoBehaviour
     private float delay = 0.5f;
     public Transform bulletTransform;
     private Vector3 mousePos;
+    private Animator anim;
+    void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
     void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -20,6 +27,7 @@ public class Rotate : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canFire)
         {
+            anim.SetTrigger("fire");
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             canFire = false;
         }
