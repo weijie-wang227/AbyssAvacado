@@ -1,6 +1,3 @@
-using System;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour

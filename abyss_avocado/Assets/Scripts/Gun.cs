@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        var bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        var bullet = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
         var bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(firePower * firePoint.right, ForceMode2D.Impulse);
         bullet.damage = damage;
