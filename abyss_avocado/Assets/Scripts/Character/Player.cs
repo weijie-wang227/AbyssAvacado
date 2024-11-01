@@ -2,11 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 // Attach this script to player gameobject
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDeathHandler
 {
     public static Player Instance { get; private set; }
-    public int health = 10;
-    public bool invulnerable = false;
+    public HealthManager HealthManager { get; private set; }
+
     private void Awake()
     {
         // Singleton boilerplate
@@ -16,31 +16,12 @@ public class Player : MonoBehaviour
             return;
         }
         Instance = this;
+
+        HealthManager = GetComponent<HealthManager>();
     }
 
-    public void Damage(int damage)
+    public void HandleDeath()
     {
-
-        health = health - damage;
-        if (health < 0)
-        {
-            Death();
-        }
-        else
-        {
-            StartCoroutine(InvulFrames());
-        }
-    }
-
-    private void Death()
-    {
-
-    }
-
-    private IEnumerator InvulFrames()
-    {
-        invulnerable = true;
-        yield return new WaitForSeconds(1.0f);
-        invulnerable = false;
+        print("Player died");
     }
 }

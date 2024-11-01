@@ -86,7 +86,7 @@ public class CharacterMotor : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.CompareTag("Enemy") && !Player.Instance.invulnerable)
+        if (col.collider.CompareTag("Enemy") && !Player.Instance.HealthManager.Invulnerable)
         {
             body.AddForce((col.transform.position - transform.position).normalized * -500f);
         }

@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float damage = 5f;
     [SerializeField] private float cooldown = 0.1f;
 
-    public Boolean canFire = true;
+    private bool canFire = true;
     
     public void Fire()
     {

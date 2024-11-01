@@ -278,6 +278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7506885407649803353}
     m_Modifications:
+    - target: {fileID: 25415550728896913, guid: 431216f2a59ba1745aef4da167ab5544, type: 3}
+      propertyPath: firePower
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 836735295893200576, guid: 431216f2a59ba1745aef4da167ab5544, type: 3}
       propertyPath: m_Name
       value: Gun
