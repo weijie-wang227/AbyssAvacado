@@ -10,6 +10,8 @@ public class HealthManager : MonoBehaviour, IDamageable
 
     public event EventHandler HealthChanged;
 
+    [SerializeField] private IDeathHandler deathHandler;
+
     void Start()
     {
         health = maxHealth;
@@ -24,21 +26,14 @@ public class HealthManager : MonoBehaviour, IDamageable
         else
         {
             health = 0;
-            Die();
+            deathHandler.HandleDeath();
         }
         HealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void Heal(float _health)
+    public void Heal(float amount)
     {
-        health += Math.Min(_health, maxHealth - health); // prevent overhealing
+        health += Math.Min(amount, maxHealth - health);
         HealthChanged?.Invoke(this, EventArgs.Empty);
     }
-
-    private void Die()
-    {
-        Debug.Log(gameObject.name + " died");
-    }
-
-    void IDamageable.OnDestroyed() => Die();
 }
