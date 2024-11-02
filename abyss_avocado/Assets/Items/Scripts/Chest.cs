@@ -6,10 +6,13 @@ public class Chest : Interactable
     [SerializeField] private List<WeightedElement<GameObject>> itemPrefabs;
     [SerializeField] private GameObject openedChestPrefab; // This will replace the chest after it has been opened i.e. interacted with
 
-    public override void OnInteract(GameObject interactor)
+    public override void OnInteract()
     {
-        var itemPickUp = RandomUtils.WeightedRandomSelect(itemPrefabs);
-        Instantiate(itemPickUp, transform.position, transform.rotation);
+        if (itemPrefabs.Count > 0 )
+        {
+            var itemPickUp = RandomUtils.WeightedRandomSelect(itemPrefabs);
+            Instantiate(itemPickUp, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
         Instantiate(openedChestPrefab, transform.position, transform.rotation);
     }

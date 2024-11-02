@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 353275166, guid: c33566e6455a3ba4a9ead4d9a9ca0499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs: []
-  openedChestPrefab: {fileID: 0}
+  openedChestPrefab: {fileID: 5204744160281753122, guid: 04eb0a59fa9d27240a28d2ab8e9586ba, type: 3}
 --- !u!50 &7104743047135709914
 Rigidbody2D:
   serializedVersion: 4
