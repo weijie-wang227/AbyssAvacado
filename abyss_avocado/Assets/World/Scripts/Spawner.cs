@@ -4,16 +4,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<WeightedElement<GameObject>> enemyPool;
-    //[SerializeField] private List<WeightedElement<GameObject>> itemPool;
+    [SerializeField] private List<WeightedElement<GameObject>> chestPool;
 
     [SerializeField] private int enemiesPerChunk = 5;
-    //[SerializeField] private int itemsPerChunk = 0;
+    [SerializeField] private int chestsPerChunk = 2;
 
     // Spawn enemies and items within the given chunk
     public void PopulateChunk(Chunk chunk)
     {
         SpawnEntities(chunk, enemiesPerChunk, enemyPool);
-        //SpawnEntities(chunk, itemsPerChunk, itemPool);
+        SpawnEntities(chunk, chestsPerChunk, chestPool);
 
     }
 

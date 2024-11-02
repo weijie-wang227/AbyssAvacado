@@ -70,4 +70,8 @@ MonoBehaviour:
     weight: 0.5
   - element: {fileID: 1403024885736690757, guid: 3fefd68ab02c09847b9d7f8bd47ac8de, type: 3}
     weight: 0.5
-  enemiesPerChunk: 5
+  chestPool:
+  - element: {fileID: 7385062061082414272, guid: 781d628d63b4f23418a4adee9139cbcf, type: 3}
+    weight: 1
+  enemiesPerChunk: 10
+  chestsPerChunk: 2
