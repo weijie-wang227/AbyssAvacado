@@ -230,91 +230,15 @@ PrefabInstance:
       propertyPath: mapDisplay
       value: 
       objectReference: {fileID: 227656368}
+    - target: {fileID: 6131149285496617349, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: useRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
---- !u!1 &574778809
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 574778810}
-  - component: {fileID: 574778811}
-  - component: {fileID: 574778812}
-  m_Layer: 3
-  m_Name: InteractField
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &574778810
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574778809}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 789260909}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &574778811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574778809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7567f5a412b82bf4cab55d0305b8b3bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &574778812
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574778809}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!1 &616975381
 GameObject:
   m_ObjectHideFlags: 3
@@ -480,17 +404,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4514378703585126553, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
   m_PrefabInstance: {fileID: 3867406829135221557}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &789260912 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4185137752053698780, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
-  m_PrefabInstance: {fileID: 3867406829135221557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8284a83c9de5baf42a40aaeb79cb7515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1654543940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1725,16 +1638,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8126928382746899082, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
-      propertyPath: deathHandler
-      value: 
-      objectReference: {fileID: 789260912}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4514378703585126553, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 574778810}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
 --- !u!1660057539 &9223372036854775807

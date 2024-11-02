@@ -5,29 +5,26 @@ using UnityEngine;
 
 public class CellularAutomata
 {
-    private int width;
-    private int height;
-    private int smoothSteps;
-    private int fillPercent;
+    private readonly int width;
+    private readonly int height;
+    private readonly int smoothSteps;
+    private readonly int fillPercent;
+    private readonly System.Random rng;
 
     public static readonly Vector2Int[] directions = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0), new(-1, -1), new(-1, 1), new(1, -1), new Vector2Int(1, 1) };
     public static readonly Vector2Int[] orthogonalDirections = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
 
-    public CellularAutomata(int width, int height, int smoothSteps, int fillPercent)
+    public CellularAutomata(int width, int height, int smoothSteps, int fillPercent, System.Random rng)
     {
         this.width = width;
         this.height = height;
         this.smoothSteps = smoothSteps;
         this.fillPercent = fillPercent;
+        this.rng = rng;
     }
 
-    public bool[,] GenerateMap(int width, int height, int smoothSteps, int fillPercent, System.Random rng)
+    public bool[,] GenerateMap()
     {
-        this.width = width;
-        this.height = height;
-        this.smoothSteps = smoothSteps;
-        this.fillPercent = fillPercent;
-
         var map = new bool[height, width];
         
         RandomFill(map, rng, fillPercent);

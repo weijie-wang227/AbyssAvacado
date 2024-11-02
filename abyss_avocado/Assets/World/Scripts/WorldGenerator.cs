@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,7 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
 
-    private CellularAutomata genAlgo;
-
+    private CellularAutomata cellularAutomaton;
 
     private int chunkLimit = 4;
     private Queue<Chunk> chunks = new();
@@ -28,8 +28,15 @@ public class WorldGenerator : MonoBehaviour
 
     void Start()
     {
-        genAlgo = new CellularAutomata(chunkWidth, chunkHeight, smoothSteps, fillPercent);
         player = Player.Instance;
+
+        if (useRandomSeed)
+        {
+            seed = Guid.NewGuid().ToString();
+        }
+
+        System.Random rng = new(seed.GetHashCode());
+        cellularAutomaton = new CellularAutomata(chunkWidth, chunkHeight, smoothSteps, fillPercent, rng);
 
         LoadChunk();
     }
@@ -65,13 +72,7 @@ public class WorldGenerator : MonoBehaviour
 
     private Chunk GenerateChunk(int index)
     {
-        if (useRandomSeed)
-        {
-            seed = Time.time.ToString();
-        }
-        System.Random rng = new(seed.GetHashCode());
-
-        var map = genAlgo.GenerateMap(chunkWidth, chunkHeight, smoothSteps, fillPercent, rng);
+        var map = cellularAutomaton.GenerateMap();
 
         var chunk = new Chunk(index, new Vector2(0, -index * chunkHeight), map);
         return chunk;
