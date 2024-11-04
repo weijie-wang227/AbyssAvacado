@@ -13,7 +13,7 @@ public class HealthManager : MonoBehaviour, IDamageable
 
     float IDamageable.HitPoints => health;
 
-    public event EventHandler HealthChanged;
+    public event EventHandler<HealthEventArgs> HealthChanged;
 
     [SerializeField] private DeathHandler deathHandler;
 
@@ -38,7 +38,7 @@ public class HealthManager : MonoBehaviour, IDamageable
             health = 0;
             deathHandler.HandleDeath();
         }
-        HealthChanged?.Invoke(this, EventArgs.Empty);
+        HealthChanged?.Invoke(this, new HealthEventArgs(health));
     }
 
     private IEnumerator InvulFrames()
@@ -50,6 +50,15 @@ public class HealthManager : MonoBehaviour, IDamageable
     public void Heal(float amount)
     {
         health += Math.Min(amount, maxHealth - health);
-        HealthChanged?.Invoke(this, EventArgs.Empty);
+        HealthChanged?.Invoke(this, new HealthEventArgs(health));
+    }
+}
+
+public class HealthEventArgs
+{
+    public readonly float health;
+    public HealthEventArgs(float health)
+    {
+        this.health = health;
     }
 }

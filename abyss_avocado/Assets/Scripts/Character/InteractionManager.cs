@@ -35,6 +35,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (Target != null)
         {
+            print("Interacted with " + Target.name);
             Target.OnInteract();
         }
     }
