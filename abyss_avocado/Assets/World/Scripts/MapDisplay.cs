@@ -5,15 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class MapDisplay : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
     [SerializeField] private Vector2 position; // top-left corner position
 
-    [SerializeField] private TileBase fillTile;
-    [SerializeField] private TileBase emptyTile;
+    [SerializeField] private Tilemap backgroundTilemap;
+    [SerializeField] private Tilemap wallTilemap;
+
+    [SerializeField] private TileBase wallTile;
+    [SerializeField] private TileBase backgroundTile;
 
     private void Awake()
     {
-        tilemap.transform.position = position;
+        backgroundTilemap.transform.position = position;
     }
 
     // Create tiles for new chunk
@@ -28,15 +30,11 @@ public class MapDisplay : MonoBehaviour
             {
                 var pos = new Vector3Int(x, -y - 1 - yOffset);
 
+                backgroundTilemap.SetTile(pos, backgroundTile);
                 if (grid[y, x])
                 {
-                    tilemap.SetTile(pos, fillTile);
+                    wallTilemap.SetTile(pos, wallTile);
                 }
-                else
-                {
-                    tilemap.SetTile(pos, emptyTile);
-                }
-
             }
         }
     }
