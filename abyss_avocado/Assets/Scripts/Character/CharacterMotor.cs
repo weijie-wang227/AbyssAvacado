@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Xml.Serialization;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
@@ -11,27 +12,44 @@ public class CharacterMotor : MonoBehaviour
     private bool isGrounded = false;
     private bool rightContact = false;
     private bool leftContact = false;
+    public bool isSmashing;
     private Rigidbody2D body;
     private new SpriteRenderer renderer;
     private Vector2 currentPos;
     private LayerMask mask;
+    private AudioSource audioSource;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         mask = LayerMask.GetMask("Platform");
+        audioSource = GetComponent<AudioSource>();
+
     }
     void Update()
     {
         currentPos = transform.position;
+
         if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f), mask))
         {
             isGrounded = true;
+            if (isSmashing)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
             isGrounded = false;
+        }
+        if (body.velocity.y < -35f)
+        {
+            isSmashing = true;
+        }
+        else
+        {
+            isSmashing = false;
         }
 
         if (Physics2D.Linecast(currentPos - new Vector2(-0.35f, -0.5f), currentPos - new Vector2(-0.35f, 0.4f), mask))
@@ -71,7 +89,7 @@ public class CharacterMotor : MonoBehaviour
         {
             if (!isGrounded)
             {
-                body.gravityScale += 1.5f;
+                body.AddForce(Vector2.down * 40f);
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))

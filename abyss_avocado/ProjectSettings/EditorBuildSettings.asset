@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 20cfbcb837b31234baa68aef37cab4e1
   - enabled: 1
-    path: Assets/abyss.unity
+    path: Assets/Scenes/abyss.unity
     guid: 373a13d206e0ae84fae430f883ea9eb2
   m_configObjects: {}

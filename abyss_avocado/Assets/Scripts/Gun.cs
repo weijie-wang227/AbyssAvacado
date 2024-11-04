@@ -10,9 +10,14 @@ public class Gun : MonoBehaviour
     [SerializeField] private float firePower = 100f;
     [SerializeField] private float damage = 5f;
     [SerializeField] private float cooldown = 0.1f;
+    private AudioSource audioSource;
 
     private bool canFire = true;
-    
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void Fire()
     {
         if (!canFire) return;
@@ -20,7 +25,8 @@ public class Gun : MonoBehaviour
         anim.SetTrigger("fire");
         Shoot();
         StartCoroutine(Cooldown());
-        
+        audioSource.Play();
+
     }
 
     private void Shoot()
