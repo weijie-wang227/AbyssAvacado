@@ -24,7 +24,7 @@ public class CharacterMotor : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         mask = LayerMask.GetMask("Platform");
-        audioSource = GetComponent<AudioSource>();
+        audioSource = transform.GetChild(0).GetComponent<AudioSource>();
 
     }
     void Update()

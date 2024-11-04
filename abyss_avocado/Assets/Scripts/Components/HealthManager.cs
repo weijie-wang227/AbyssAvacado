@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
     private float health;
+    private AudioSource audioSource;
 
     [SerializeField] private float iframes = 1.0f;
     private bool invulnerable = false;
@@ -20,6 +21,7 @@ public class HealthManager : MonoBehaviour, IDamageable
     void Start()
     {
         health = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damage)
@@ -27,6 +29,7 @@ public class HealthManager : MonoBehaviour, IDamageable
         if (invulnerable) { return; }
 
         print($"{gameObject.name} received {damage} damage");
+        audioSource.Play();
 
         if (damage < health)
         {
