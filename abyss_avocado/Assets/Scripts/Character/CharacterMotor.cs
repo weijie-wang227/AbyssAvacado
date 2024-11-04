@@ -88,7 +88,8 @@ public class CharacterMotor : MonoBehaviour
     {
         if (col.collider.CompareTag("Enemy"))
         {
-            body.AddForce((col.transform.position - transform.position).normalized * -500f);
+            body.AddForce((col.transform.position - transform.position).normalized * -5f, ForceMode2D.Impulse);
+            col.rigidbody.AddForce((col.transform.position - transform.position).normalized * 5f, ForceMode2D.Impulse);
         }
     }
 

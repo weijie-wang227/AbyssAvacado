@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.collider.TryGetComponent<IDamageable>(out var target))
         {
-            collision.rigidbody.AddForce(collision.relativeVelocity.normalized * knockBack, ForceMode2D.Impulse);
+            collision.rigidbody.AddForce(-collision.relativeVelocity.normalized * knockBack, ForceMode2D.Impulse);
             target.TakeDamage(damage);
         }
         Destroy(gameObject);
