@@ -1,9 +1,4 @@
-using System;
-using System.Net;
-using System.Xml.Serialization;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CharacterMotor : MonoBehaviour
 {

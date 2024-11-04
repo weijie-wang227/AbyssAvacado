@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour, IDamageable
     private AudioSource audioSource;
 
     [SerializeField] private float iframes = 1.0f;
-    public bool invulnerable = false;
+    private bool invulnerable = false;
 
     float IDamageable.HitPoints => health;
 
@@ -50,7 +50,6 @@ public class HealthManager : MonoBehaviour, IDamageable
     public void ActivateInvul()
     {
         if (invulnerable) return;
-        print("invul start");
         StartCoroutine(InvulFrames()); 
     }
 
