@@ -33,7 +33,7 @@ public class BadApple : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != 6)
+        if (collision.gameObject.layer == 6)
         {
             body.AddForce(Vector3.up * jumpSpeed);
         }
