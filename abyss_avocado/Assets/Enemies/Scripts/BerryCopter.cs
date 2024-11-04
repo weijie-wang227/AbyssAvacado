@@ -10,7 +10,12 @@ public class BerryCopter : MonoBehaviour
     private float timer = 0f;
     private float movementSpeed = 5.0f;
     private Vector3 playerPosition;
+    private Rigidbody2D body;
 
+    void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
         timer += Time.deltaTime;
@@ -31,5 +36,12 @@ public class BerryCopter : MonoBehaviour
             yield return null;
         }
         dashTimer = 0;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer != 6)
+        {
+            body.AddForce(Vector3.up * 20);
+        }
     }
 }

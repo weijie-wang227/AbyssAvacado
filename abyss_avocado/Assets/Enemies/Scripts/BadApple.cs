@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class BadApple : MonoBehaviour
 {
     public float speed;
-    public float jumpSpeed;
+    [SerializeField] private float jumpSpeed;
 
     private Rigidbody2D body;
     private int direction = 1;
