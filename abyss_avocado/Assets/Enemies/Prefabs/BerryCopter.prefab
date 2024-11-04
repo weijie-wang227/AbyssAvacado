@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   iframes: 0
+  invulnerable: 0
   deathHandler: {fileID: 1836779847006086696}
 --- !u!114 &1836779847006086696
 MonoBehaviour:
@@ -236,7 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb150b3c35077714b86a8258518a2f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamage: 10
+  isActive: 1
+  damage: 5
 --- !u!82 &3156281916115067733
 AudioSource:
   m_ObjectHideFlags: 0

@@ -12,21 +12,22 @@ public class CharacterMotor : MonoBehaviour
     private bool isGrounded = false;
     private bool rightContact = false;
     private bool leftContact = false;
-    public bool isSmashing;
-    private Rigidbody2D body;
-    private new SpriteRenderer renderer;
+    private bool isSmashing;
     private Vector2 currentPos;
     private LayerMask mask;
-    private AudioSource audioSource;
+    [SerializeField] private Rigidbody2D body;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private AudioSource smashAudio;
+    [SerializeField] private ContactDamage contactDamage;
+    [SerializeField] private HealthManager healthManager;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         mask = LayerMask.GetMask("Platform");
-        audioSource = transform.GetChild(0).GetComponent<AudioSource>();
-
     }
+
     void Update()
     {
         currentPos = transform.position;
@@ -36,7 +37,7 @@ public class CharacterMotor : MonoBehaviour
             isGrounded = true;
             if (isSmashing)
             {
-                audioSource.Play();
+                smashAudio.Play();
             }
         }
         else
@@ -46,6 +47,7 @@ public class CharacterMotor : MonoBehaviour
         if (body.velocity.y < -35f)
         {
             isSmashing = true;
+            healthManager.ActivateInvul(); // invulnerable when smashing
         }
         else
         {
@@ -78,28 +80,24 @@ public class CharacterMotor : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow) && !leftContact)
         {
             transform.position += Vector3.left * movementSpeed * Time.deltaTime;
-            renderer.flipX = true;
+            sprite.flipX = true;
         }
         if (Input.GetKey(KeyCode.RightArrow) && !rightContact)
         {
             transform.position += Vector3.right * movementSpeed * Time.deltaTime;
-            renderer.flipX = false;
+            sprite.flipX = false;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (!isGrounded && Input.GetKey(KeyCode.DownArrow))
         {
-            if (!isGrounded)
-            {
-                body.AddForce(Vector2.down * 40f);
-            }
+            body.AddForce(Vector2.down * 40f);
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (isGrounded)
-            {
-                body.AddForce(Vector3.up * jumpSpeed);
-                isGrounded = false;
-            }
+            body.AddForce(Vector3.up * jumpSpeed);
+            isGrounded = false;   
         }
+
+        contactDamage.isActive = isSmashing;
     }
 
     void OnCollisionEnter2D(Collision2D col)

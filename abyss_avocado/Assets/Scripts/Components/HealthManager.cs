@@ -9,8 +9,7 @@ public class HealthManager : MonoBehaviour, IDamageable
     private AudioSource audioSource;
 
     [SerializeField] private float iframes = 1.0f;
-    private bool invulnerable = false;
-    public bool Invulnerable => invulnerable;
+    public bool invulnerable = false;
 
     float IDamageable.HitPoints => health;
 
@@ -29,12 +28,16 @@ public class HealthManager : MonoBehaviour, IDamageable
         if (invulnerable) { return; }
 
         print($"{gameObject.name} received {damage} damage");
-        audioSource.Play();
+        
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
 
         if (damage < health)
         {
             health -= damage;
-            StartCoroutine(InvulFrames()); // Entity gets invulnerability frames after taking damage
+            ActivateInvul();
         }
         else
         {
@@ -42,6 +45,13 @@ public class HealthManager : MonoBehaviour, IDamageable
             deathHandler.HandleDeath();
         }
         HealthChanged?.Invoke(this, new HealthEventArgs(health));
+    }
+
+    public void ActivateInvul()
+    {
+        if (invulnerable) return;
+        print("invul start");
+        StartCoroutine(InvulFrames()); 
     }
 
     private IEnumerator InvulFrames()
