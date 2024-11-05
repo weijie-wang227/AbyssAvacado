@@ -29,7 +29,6 @@ public class BerryCopter : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        print("startdash");
         playerPosition = Player.Instance.transform.position;
         Vector2 force = (playerPosition - transform.position).normalized * movementSpeed;
         body.AddForce(force);
@@ -41,7 +40,6 @@ public class BerryCopter : MonoBehaviour
             yield return null;
         }
         dashTimer = 0;
-        print("dash");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
