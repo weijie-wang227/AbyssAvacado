@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour
@@ -8,6 +10,7 @@ public class CharacterMotor : MonoBehaviour
     private bool rightContact = false;
     private bool leftContact = false;
     private bool isSmashing;
+    private float jumpDelay;
     private Vector2 currentPos;
     private LayerMask mask;
     [SerializeField] private Rigidbody2D body;
@@ -26,6 +29,7 @@ public class CharacterMotor : MonoBehaviour
     void Update()
     {
         currentPos = transform.position;
+        jumpDelay += Time.deltaTime;
 
         if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f), mask))
         {
@@ -39,6 +43,7 @@ public class CharacterMotor : MonoBehaviour
         {
             isGrounded = false;
         }
+
         if (body.velocity.y < -35f)
         {
             isSmashing = true;
@@ -67,29 +72,26 @@ public class CharacterMotor : MonoBehaviour
             leftContact = false;
         }
 
-        if (isGrounded)
-        {
-            body.gravityScale = 2.1f;
-        }
 
-        if (Input.GetKey(KeyCode.LeftArrow) && !leftContact)
+        if (Input.GetAxis("Horizontal") < -0.1 && !leftContact)
         {
             transform.position += Vector3.left * movementSpeed * Time.deltaTime;
             sprite.flipX = true;
         }
-        if (Input.GetKey(KeyCode.RightArrow) && !rightContact)
+        if (Input.GetAxis("Horizontal") > 0.1 && !rightContact)
         {
             transform.position += Vector3.right * movementSpeed * Time.deltaTime;
             sprite.flipX = false;
         }
-        if (!isGrounded && Input.GetKey(KeyCode.DownArrow))
+        if (!isGrounded && Input.GetAxis("Vertical") < -0.1)
         {
             body.AddForce(Vector2.down * 40f);
         }
-        if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isGrounded && Input.GetAxis("Vertical") > 0.1 && jumpDelay > 0.1f)
         {
             body.AddForce(Vector3.up * jumpSpeed);
-            isGrounded = false;   
+            isGrounded = false;
+            jumpDelay = 0f;
         }
 
         contactDamage.isActive = isSmashing;

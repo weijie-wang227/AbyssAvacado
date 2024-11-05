@@ -55,7 +55,6 @@ public class EndUI : MonoBehaviour
 
     public void OnClick()
     {
-        print("vlick");
         SceneManager.LoadScene("Start");
     }
 }

@@ -1117,6 +1117,14 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219339277070343797, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910210679864839215, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4332609597373047044, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
       propertyPath: smashAudio
       value: 
