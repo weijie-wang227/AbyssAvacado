@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class EndUI : MonoBehaviour
 {
-    // Start is called before the first frame update
     private string data;
     [SerializeField] private TMP_Text dataText;
     [SerializeField] private Image blackScreen;
@@ -15,7 +14,9 @@ public class EndUI : MonoBehaviour
 
     void Start()
     {
-        data = "kills: 100\ndepth: 20m";
+        int killCount = RunStats.Instance.KillCount;
+        int depth = RunStats.Instance.Depth;
+        data = $"kills: {killCount}\ndepth: {depth}";
         StartCoroutine(Sequence());
     }
 

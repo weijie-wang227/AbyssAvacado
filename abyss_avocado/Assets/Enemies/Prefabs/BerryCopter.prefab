@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  damage: 5
+  damage: 10
 --- !u!82 &3156281916115067733
 AudioSource:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class WorldGenerator : MonoBehaviour
     private readonly int chunkLimit = 4;
     private readonly Queue<Chunk> chunks = new();
     private int currentIndex = 0; // Index of newest chunk
-    public int ChunkCount => currentIndex + 1; // Number of chunks generated so far
+    public int ChunkCount => currentIndex; // Number of chunks generated so far
     private int NextLoadPosition => -chunkHeight * (currentIndex- 1) - chunkHeight / 2; // When player reaches this y position, load the next chunk
 
     private Player player; // Reference to player singleton

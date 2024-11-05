@@ -6,9 +6,7 @@ using UnityEngine;
 public class Player : DeathHandler
 {
     public static Player Instance { get; private set; }
-    public HealthManager HealthManager { get; private set; }
-
-    public event EventHandler PlayerDied;
+    [field: SerializeField] public HealthManager HealthManager { get; private set; }
 
     private void Awake()
     {
@@ -19,13 +17,10 @@ public class Player : DeathHandler
             return;
         }
         Instance = this;
-
-        HealthManager = GetComponent<HealthManager>();
     }
 
     public override void HandleDeath()
     {
-        print("Player died");
-        PlayerDied?.Invoke(this, EventArgs.Empty);
+        GameManager.Instance.EndGame();
     }
 }
