@@ -857,6 +857,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tilemap Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 4225858602453546027, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225858602453546027, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1958515671
+      objectReference: {fileID: 0}
     - target: {fileID: 6738793996859819827, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -896,6 +904,14 @@ PrefabInstance:
     - target: {fileID: 6738793996859819827, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810972120776407532, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810972120776407532, guid: a5c718d48f6d76f4d93ae18aa6ae8b67, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1958515671
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
