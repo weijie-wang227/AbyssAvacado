@@ -53,9 +53,4 @@ public class EndUI : MonoBehaviour
         }
         dataText.text = data;
     }
-
-    public void OnClick()
-    {
-        SceneManager.LoadScene("Start");
-    }
 }

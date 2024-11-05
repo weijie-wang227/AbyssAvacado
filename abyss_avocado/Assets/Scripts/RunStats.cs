@@ -10,11 +10,6 @@ public class RunStats : MonoBehaviour
     private int depth = 0;
     public int Depth => depth;
 
-    private void Start()
-    {
-        Reset();
-    }
-
     private void Awake()
     {
         // Singleton boilerplate
@@ -37,7 +32,7 @@ public class RunStats : MonoBehaviour
         killCount++;
     }
 
-    private void Reset()
+    public void Reset()
     {
         killCount = 0;
         depth = 0;

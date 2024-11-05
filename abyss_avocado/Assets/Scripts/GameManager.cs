@@ -14,11 +14,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void StartGame()
     {
+        RunStats.Instance.Reset();
         SceneManager.LoadScene("abyss");
     }
 
@@ -26,5 +26,10 @@ public class GameManager : MonoBehaviour
     {
         RunStats.Instance.RecordDepth();
         SceneManager.LoadScene("Death");
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Start");
     }
 }
