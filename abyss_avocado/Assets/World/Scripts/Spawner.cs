@@ -6,14 +6,25 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<WeightedElement<GameObject>> enemyPool;
     [SerializeField] private List<WeightedElement<GameObject>> chestPool;
 
-    [SerializeField] private int enemiesPerChunk = 5;
-    [SerializeField] private int chestsPerChunk = 2;
+    [SerializeField] private int baseEnemySpawnRate = 5; // Enemies spawned per chunk
+    [SerializeField] private int chestSpawnRate = 2; // Chests spawned per chunk
+
+    [SerializeField] private WorldGenerator worldGenerator;
+
+    private int EnemySpawnRate
+    {
+        get
+        {
+            // Enemy spawn rate increases with number of chunks
+            return baseEnemySpawnRate + worldGenerator.ChunkCount;
+        }
+    }
 
     // Spawn enemies and items within the given chunk
     public void PopulateChunk(Chunk chunk)
     {
-        SpawnEntities(chunk, enemiesPerChunk, enemyPool);
-        SpawnEntities(chunk, chestsPerChunk, chestPool);
+        SpawnEntities(chunk, EnemySpawnRate, enemyPool);
+        SpawnEntities(chunk, chestSpawnRate, chestPool);
 
     }
 
