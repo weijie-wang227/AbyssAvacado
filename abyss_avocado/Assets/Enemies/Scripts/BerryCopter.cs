@@ -45,7 +45,7 @@ public class BerryCopter : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StopCoroutine(dash);
+        StopAllCoroutines();
         if (collision.gameObject.layer != 6)
         {
             body.AddForce((collision.relativeVelocity.normalized + 0.2f * Vector2.up) * 100, ForceMode2D.Impulse);
