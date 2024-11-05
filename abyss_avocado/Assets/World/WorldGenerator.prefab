@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4781877319802602784}
   - component: {fileID: 6131149285496617349}
   - component: {fileID: 7584770766035455027}
+  - component: {fileID: 5451819412638893219}
   m_Layer: 0
   m_Name: WorldGenerator
   m_TagString: Untagged
@@ -73,5 +74,18 @@ MonoBehaviour:
   chestPool:
   - element: {fileID: 7385062061082414272, guid: 781d628d63b4f23418a4adee9139cbcf, type: 3}
     weight: 1
-  enemiesPerChunk: 10
-  chestsPerChunk: 2
+  baseEnemySpawnRate: 10
+  chestSpawnRate: 2
+  worldGenerator: {fileID: 6131149285496617349}
+--- !u!114 &5451819412638893219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4488607222844905450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738e46dd4cb719c4a97144c07601f8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

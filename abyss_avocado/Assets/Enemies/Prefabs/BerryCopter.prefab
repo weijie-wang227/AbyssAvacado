@@ -211,8 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   iframes: 0
-  invulnerable: 0
   deathHandler: {fileID: 1836779847006086696}
+  damagedSound: {fileID: 3156281916115067733}
 --- !u!114 &1836779847006086696
 MonoBehaviour:
   m_ObjectHideFlags: 0

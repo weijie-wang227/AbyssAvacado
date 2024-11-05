@@ -125,8 +125,7 @@ MonoBehaviour:
   firePoint: {fileID: 8370194148459819063}
   firePower: 100
   damage: 5
-  cooldown: 0.1
-  canFire: 1
+  cooldown: 0.2
 --- !u!1 &6874054288179671186
 GameObject:
   m_ObjectHideFlags: 0

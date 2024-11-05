@@ -10,8 +10,18 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Sprite halfHeart;
 
+    private void Start()
+    {
+        var playerHealth = Player.Instance.HealthManager;
+        playerHealth.HealthChanged += OnHealthChanged;
+    }
 
-    public void UpdateHealth(int health)
+    private void OnHealthChanged(object sender, HealthEventArgs e)
+    {
+        UpdateHealth(e.health);
+    }
+
+    public void UpdateHealth(float health)
     {
         for (int i = 0; i < heartpngs.Length; i++)
         {

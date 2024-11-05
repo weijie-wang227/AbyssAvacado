@@ -44,7 +44,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 46c5456222548f347a9566ac690c31d8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 1910210679864839215}
   sprite: {fileID: 6323485715134294707}
-  smashAudio: {fileID: 1219339277070343797}
+  smashAudio: {fileID: 548416029770514633}
   contactDamage: {fileID: 61846163416648192}
   healthManager: {fileID: 8126928382746899082}
 --- !u!50 &1910210679864839215
@@ -336,7 +336,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -438,10 +438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e60f030aed209145a9f3671fe019c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   iframes: 1
-  invulnerable: 0
   deathHandler: {fileID: 4185137752053698780}
+  damagedSound: {fileID: 1219339277070343797}
 --- !u!114 &6482627237770570765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f0497f88952a63b479027f121d74fbe8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
