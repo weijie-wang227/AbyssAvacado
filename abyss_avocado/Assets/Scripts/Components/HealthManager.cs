@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
     private float health;
+    [SerializeField] private bool isPlayer;
     private AudioSource audioSource;
 
     [SerializeField] private float iframes = 1.0f;
@@ -21,6 +22,10 @@ public class HealthManager : MonoBehaviour, IDamageable
     {
         health = maxHealth;
         audioSource = GetComponent<AudioSource>();
+        if (isPlayer)
+        {
+            GetComponent<HealthUI>().UpdateHealth((int)health);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -28,7 +33,7 @@ public class HealthManager : MonoBehaviour, IDamageable
         if (invulnerable) { return; }
 
         print($"{gameObject.name} received {damage} damage");
-        
+
         if (audioSource != null)
         {
             audioSource.Play();
@@ -37,6 +42,10 @@ public class HealthManager : MonoBehaviour, IDamageable
         if (damage < health)
         {
             health -= damage;
+            if (isPlayer)
+            {
+                GetComponent<HealthUI>().UpdateHealth((int)health);
+            }
             ActivateInvul();
         }
         else
@@ -50,7 +59,7 @@ public class HealthManager : MonoBehaviour, IDamageable
     public void ActivateInvul()
     {
         if (invulnerable) return;
-        StartCoroutine(InvulFrames()); 
+        StartCoroutine(InvulFrames());
     }
 
     private IEnumerator InvulFrames()
