@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpSpeed: 2
+  jumpSpeed: 50
   direction: 1
 --- !u!95 &9205839468311981217
 Animator:

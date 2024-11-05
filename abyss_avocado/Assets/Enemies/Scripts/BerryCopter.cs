@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BerryCopter : MonoBehaviour
 {
-    private float cooldown = 3.0f;
+    private float cooldown = 2.0f;
     private float dashDuration = 0.5f;
     private float dashTimer = 0f;
     private float timer = 0f;
-    private float movementSpeed = 5.0f;
+    [SerializeField] private float movementSpeed = 50.0f;
     private Vector3 playerPosition;
     private Rigidbody2D body;
+    private Coroutine dash;
 
     void Start()
     {
@@ -22,26 +23,32 @@ public class BerryCopter : MonoBehaviour
         if (timer > cooldown)
         {
             timer = 0;
-            StartCoroutine(dash());
+            dash = StartCoroutine(Dash());
         }
     }
 
-    private IEnumerator dash()
+    private IEnumerator Dash()
     {
+        print("startdash");
         playerPosition = Player.Instance.transform.position;
-        while (dashTimer < dashDuration)
+        Vector2 force = (playerPosition - transform.position).normalized * movementSpeed;
+        body.AddForce(force);
+        yield return new WaitForSeconds(dashDuration);
+        while (dashTimer < 0.3f)
         {
-            transform.position += (playerPosition - transform.position).normalized * movementSpeed * Time.deltaTime;
+            body.velocity = Vector2.Lerp(body.velocity, Vector2.zero, 1 - timer / 0.3f);
             dashTimer += Time.deltaTime;
             yield return null;
         }
         dashTimer = 0;
+        print("dash");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        StopCoroutine(dash);
         if (collision.gameObject.layer != 6)
         {
-            body.AddForce(Vector3.up * 20);
+            body.AddForce((collision.relativeVelocity.normalized + 0.2f * Vector2.up) * 100, ForceMode2D.Impulse);
         }
     }
 }

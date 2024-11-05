@@ -150,7 +150,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 20
-  m_LinearDrag: 0.5
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb1c3b35cce7b8489331d7a58c659d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 5000
 --- !u!95 &5170102957670964337
 Animator:
   serializedVersion: 5

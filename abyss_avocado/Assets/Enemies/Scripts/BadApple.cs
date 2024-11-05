@@ -9,6 +9,7 @@ public class BadApple : MonoBehaviour
 {
     public float speed;
     [SerializeField] private float jumpSpeed;
+    private float jumpTimer = 0f;
 
     private Rigidbody2D body;
     [SerializeField] private int direction = 1;
@@ -26,19 +27,29 @@ public class BadApple : MonoBehaviour
     {
         currentPos = transform.position;
         body.velocity = new Vector2(speed * direction, body.velocity.y);
-
-        if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.45f), currentPos - new Vector2(0.25f, 0.45f), mask))
+        jumpTimer += Time.deltaTime;
+        if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.45f), currentPos - new Vector2(0.25f, 0.45f), mask) && jumpTimer > 0.1f)
         {
-            body.AddForce(Vector3.up * jumpSpeed);
+            body.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+            jumpTimer = 0f;
         }
 
-        if (Physics2D.Linecast(currentPos - new Vector2(-0.45f, -0.3f), currentPos - new Vector2(-0.45f, 0.3f)))
+        if (Physics2D.Linecast(currentPos - new Vector2(-0.45f, -0.3f), currentPos - new Vector2(-0.45f, 0.3f), mask))
         {
             direction = -1;
         }
-        else if (Physics2D.Linecast(currentPos - new Vector2(0.45f, -0.3f), currentPos - new Vector2(0.45f, 0.3f)))
+        else if (Physics2D.Linecast(currentPos - new Vector2(0.45f, -0.3f), currentPos - new Vector2(0.45f, 0.3f), mask))
         {
             direction = 1;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer != 6)
+        {
+            body.AddForce((collision.relativeVelocity.normalized + 0.2f * Vector2.up) * 200, ForceMode2D.Impulse);
+            direction *= -1;
         }
     }
 }

@@ -7,5 +7,6 @@ public class HealthPack : Interactable
     public override void OnInteract()
     {
         Player.Instance.HealthManager.Heal(healAmount);
+        Destroy(gameObject);
     }
 }
