@@ -619,6 +619,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267811809}
   m_CullTransparentMesh: 1
+--- !u!82 &1435066218 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 548416029770514633, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
+  m_PrefabInstance: {fileID: 3867406829135221557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1450396597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1117,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4332609597373047044, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
+      propertyPath: smashAudio
+      value: 
+      objectReference: {fileID: 1435066218}
     - target: {fileID: 4514378703585126553, guid: 3c4108444959d8d4ebfa4476d83a2498, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8

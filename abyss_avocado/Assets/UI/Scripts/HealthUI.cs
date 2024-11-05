@@ -13,7 +13,6 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealth(int health)
     {
-        print("uodate");
         for (int i = 0; i < heartpngs.Length; i++)
         {
             if (i < Mathf.Floor(health / 10))
