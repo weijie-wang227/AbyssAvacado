@@ -471,6 +471,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   damage: 20
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!82 &1219339277070343797
 AudioSource:
   m_ObjectHideFlags: 0
