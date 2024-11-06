@@ -9,7 +9,8 @@ public class ContactDamage : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isActive) return;
-        if (collision.collider.TryGetComponent<IDamageable>(out var obj))
+        var collider = collision.collider;
+        if (collider.CompareTag("Player") && collider.TryGetComponent<IDamageable>(out var obj))
         {
             obj.TakeDamage(damage);
         }

@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e60f030aed209145a9f3671fe019c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 25
   iframes: 0
   deathHandler: {fileID: 1836779847006086696}
   damagedSound: {fileID: 3156281916115067733}

@@ -6,6 +6,9 @@ public class EnemyDeathHandler : DeathHandler
     {
         Destroy(gameObject);
         // Death animation?
-        RunStats.Instance.RecordKill();
+        if (RunStats.Instance != null )
+        {
+            RunStats.Instance.RecordKill();
+        }
     }
 }
