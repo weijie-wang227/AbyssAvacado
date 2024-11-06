@@ -13,7 +13,7 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
 
-    private CellularAutomata cellularAutomaton;
+    private MapGenerator mapGenerator;
 
     private readonly int chunkLimit = 4;
     private readonly Queue<Chunk> chunks = new();
@@ -37,13 +37,14 @@ public class WorldGenerator : MonoBehaviour
         }
 
         System.Random rng = new(seed.GetHashCode());
-        cellularAutomaton = new CellularAutomata(chunkWidth, chunkHeight, smoothSteps, fillPercent, rng);
+        mapGenerator = new MapGenerator(chunkWidth, chunkHeight, smoothSteps, fillPercent, rng);
 
         LoadChunk();
     }
 
     private void Update()
     {
+        if (player ==  null) { return; }
         // Keep track of player position
         // If player is halfway through the height of the current chunk, generate a new chunk
         if (player.transform.position.y <= NextLoadPosition)
@@ -57,7 +58,8 @@ public class WorldGenerator : MonoBehaviour
     // Despawn old chunks if necessary
     public void LoadChunk() 
     {
-        var chunk = GenerateChunk(currentIndex);
+        var map = mapGenerator.GenerateMap();
+        var chunk = new Chunk(currentIndex, new Vector2(0, -currentIndex * chunkHeight), map);
         chunks.Enqueue(chunk);
         mapDisplay.Create(chunk);
         spawner.PopulateChunk(chunk);
@@ -69,13 +71,5 @@ public class WorldGenerator : MonoBehaviour
             mapDisplay.Clear(oldChunk);
         }
         currentIndex += 1;
-    }
-
-    private Chunk GenerateChunk(int index)
-    {
-        var map = cellularAutomaton.GenerateMap();
-
-        var chunk = new Chunk(index, new Vector2(0, -index * chunkHeight), map);
-        return chunk;
     }
 }

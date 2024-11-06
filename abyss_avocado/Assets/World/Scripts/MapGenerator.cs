@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class CellularAutomata
+public class MapGenerator
 {
     private readonly int width;
     private readonly int height;
@@ -14,7 +15,7 @@ public class CellularAutomata
     public static readonly Vector2Int[] directions = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0), new(-1, -1), new(-1, 1), new(1, -1), new Vector2Int(1, 1) };
     public static readonly Vector2Int[] orthogonalDirections = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
 
-    public CellularAutomata(int width, int height, int smoothSteps, int fillPercent, System.Random rng)
+    public MapGenerator(int width, int height, int smoothSteps, int fillPercent, System.Random rng)
     {
         this.width = width;
         this.height = height;
@@ -37,8 +38,14 @@ public class CellularAutomata
 
         var emptyRegions = GetRegions(map, false);
 
+        Debug.Log(emptyRegions.Count);
+        //foreach (var region in  emptyRegions)
+        //{
+        //    Debug.Log(region.Count);
+        //}
+
         // Remove regions smaller than 10 cells
-        //PruneRegions(map, emptyRegions, 10);
+        PruneRegions(map, emptyRegions, 10);
 
         return map;
     }
