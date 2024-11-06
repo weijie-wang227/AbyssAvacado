@@ -77,10 +77,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2374496878825701545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc24cabd14924942ad7cf8dea2d243a, type: 3}
+  m_Script: {fileID: 11500000, guid: 10549392ddab4c945aced79b0ad5d531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAI: {fileID: 5558552070903878432}
   targetLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -261,9 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb1c3b35cce7b8489331d7a58c659d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   movementSpeed: 5000
   body: {fileID: 8144962130404119016}
+  aggroManager: {fileID: 3296965131413346678}
   roamSpeed: 5
   minRoamDistance: 1
   maxRoamDistance: 5

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BerryCopter : EnemyAI
+public class BerryCopter: MonoBehaviour
 {
     private readonly float dashDuration = 0.5f;
     private float dashTimer = 0f;
@@ -10,6 +10,9 @@ public class BerryCopter : EnemyAI
     private float attackTimer = 0f;
     [SerializeField] private float movementSpeed = 50.0f;
     [SerializeField] private Rigidbody2D body;
+
+    [SerializeField] private AggroManager aggroManager;
+    private AggroManager.State State => aggroManager.AggroState;
 
     // Roaming 
     private Vector2 roamStart;
@@ -29,12 +32,12 @@ public class BerryCopter : EnemyAI
 
     void Update()
     {
-        switch (state)
+        switch (State)
         {
-            case State.Idle:
+            case AggroManager.State.Idle:
                 Roam();
                 break;
-            case State.Aggro:
+            case AggroManager.State.Aggro:
                 attackTimer += Time.deltaTime;
                 if (attackTimer > attackInterval)
                 {
@@ -62,13 +65,13 @@ public class BerryCopter : EnemyAI
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (state)
+        switch (State)
         {
-            case State.Idle:
+            case AggroManager.State.Idle:
                 // When it hits something, move back in the opposite direction
                 roamDest = ChooseRoamDest(-body.velocity.x, -body.velocity.y);
                 break;
-            case State.Aggro:
+            case AggroManager.State.Aggro:
                 StopAllCoroutines();
                 if (collision.gameObject.layer != 6)
                 {

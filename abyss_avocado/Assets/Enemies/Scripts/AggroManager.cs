@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class AggroZone : MonoBehaviour
+public class AggroManager : MonoBehaviour
 {
-    [SerializeField] private EnemyAI enemyAI;
+    public enum State
+    {
+        Idle, Aggro
+    }
+    private State state = State.Idle;
+    public State AggroState => state;
+
     [SerializeField] private LayerMask targetLayers;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (InTargetLayers(collider.gameObject))
         {
-            enemyAI.EnterAggro();
+            state = State.Aggro;
         }
     }
 
@@ -17,7 +23,7 @@ public class AggroZone : MonoBehaviour
     {
         if (InTargetLayers(collider.gameObject))
         {
-            enemyAI.ExitAggro();
+            state = State.Idle;
         }
     }
 
