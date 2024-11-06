@@ -33,10 +33,10 @@ public class Pathfinder
         this.turnCost = turnCost;
 
         // Initialize a node for each cell in the grid
-        nodeGraph = new Node[grid.GetLength(0), grid.GetLength(1)];
-        for (int x = 0; x < grid.GetLength(0); x++)
+        nodeGraph = new Node[grid.GetLength(1), grid.GetLength(0)];
+        for (int y = 0; y < grid.GetLength(0); y++)
         {
-            for (int y = 0; y < grid.GetLength(1); y++)
+            for (int x = 0; x < grid.GetLength(1); x++)
             {
                 int distanceToTarget = (int)Vector2Int.Distance(new Vector2Int(x, y), targetCell);
                 nodeGraph[x, y] = new Node(x, y, distanceToTarget);
@@ -103,7 +103,7 @@ public class Pathfinder
     {
         int hCost = neighbor.distanceToTarget;
 
-        hCost += grid[neighbor.x, neighbor.y] ? wallCost : emptyCost;
+        hCost += grid[neighbor.y, neighbor.x] ? wallCost : emptyCost;
 
         // Check if the direction from the current node to this neighbor
         // is the same as the current path direction
