@@ -15,7 +15,7 @@ public class WorldGenerator : MonoBehaviour
 
     private MapGenerator mapGenerator;
 
-    private readonly int chunkLimit = 4;
+    private readonly int chunkLimit = 2;
     private readonly Queue<Chunk> chunks = new();
     private int currentIndex = 0; // Index of newest chunk
     public int ChunkCount => currentIndex; // Number of chunks generated so far
@@ -50,7 +50,6 @@ public class WorldGenerator : MonoBehaviour
         if (player.transform.position.y <= NextLoadPosition)
         {
             LoadChunk();
-            Debug.Log("Chunk loaded");
         }
     }
 
@@ -58,18 +57,19 @@ public class WorldGenerator : MonoBehaviour
     // Despawn old chunks if necessary
     public void LoadChunk() 
     {
-        var map = mapGenerator.GenerateMap();
+        var map = mapGenerator.GenerateMap();   
         var chunk = new Chunk(currentIndex, new Vector2(0, -currentIndex * chunkHeight), map);
         chunks.Enqueue(chunk);
         mapDisplay.Create(chunk);
         spawner.PopulateChunk(chunk);
 
-        // Despawn oldest chunk if necessary
         if (chunks.Count > chunkLimit)
         {
             var oldChunk = chunks.Dequeue();
-            mapDisplay.Clear(oldChunk);
+            oldChunk.DespawnEntities();
         }
         currentIndex += 1;
+
+        print($"Chunk loaded. Chunks: {ChunkCount}");
     }
 }

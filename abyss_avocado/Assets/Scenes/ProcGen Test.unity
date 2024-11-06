@@ -412,6 +412,26 @@ PrefabInstance:
       propertyPath: fillPercent
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 7584770766035455027, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: chestSpawnRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584770766035455027, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: maxEnemySpawnRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584770766035455027, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: baseEnemySpawnRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584770766035455027, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: enemyPool.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584770766035455027, guid: e61ab1bad94e77e419a0298966f94e25, type: 3}
+      propertyPath: enemyPool.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
