@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(WorldGenerator), true)]
-public class MapGeneratorEditor : Editor
+public class WorldGeneratorEditor : Editor
 {
     public override void OnInspectorGUI()
     {

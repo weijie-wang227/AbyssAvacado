@@ -24,7 +24,7 @@ public class BerryCopter : EnemyAI
     private void Start()
     {
         roamStart = transform.position;
-        roamDest = GetRoamDestination();
+        roamDest = ChooseRoamDest();
     }
 
     void Update()
@@ -59,12 +59,22 @@ public class BerryCopter : EnemyAI
         }
         dashTimer = 0;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StopAllCoroutines();
-        if (collision.gameObject.layer != 6)
+        switch (state)
         {
-            body.AddForce((collision.relativeVelocity.normalized + 0.2f * Vector2.up) * 100, ForceMode2D.Impulse);
+            case State.Idle:
+                // When it hits something, move back in the opposite direction
+                roamDest = ChooseRoamDest(-body.velocity.x, -body.velocity.y);
+                break;
+            case State.Aggro:
+                StopAllCoroutines();
+                if (collision.gameObject.layer != 6)
+                {
+                    body.AddForce((collision.relativeVelocity.normalized + 0.2f * Vector2.up) * 100, ForceMode2D.Impulse);
+                }
+                break;
         }
     }
 
@@ -76,18 +86,24 @@ public class BerryCopter : EnemyAI
         if (Vector2.Distance(transform.position, roamDest) < 1)
         {
             StartCoroutine(Wait());
-            roamDest = GetRoamDestination();
+            roamDest = ChooseRoamDest();
         }
     }
 
-    private Vector2 GetRoamDestination()
+    // Roam in the given direction
+    private Vector2 ChooseRoamDest(float xDir, float yDir)
+    {
+        var dir = new Vector2(xDir, yDir);
+        var randomDistance = Random.Range(minRoamDistance, maxRoamDistance);
+        return roamStart + dir * randomDistance;
+    }
+
+    // Choose a random direction and distance to roam in
+    private Vector2 ChooseRoamDest()
     {
         var randomXDir = Random.Range(-1, 1);
         var randomYDir = Random.Range(-1, 1);
-        var randomDirection = new Vector2(randomXDir, randomYDir);
-
-        var randomDistance = Random.Range(minRoamDistance, maxRoamDistance);
-        return roamStart + randomDirection * randomDistance;
+        return ChooseRoamDest(randomXDir, randomYDir);
     }
 
     private IEnumerator Wait()

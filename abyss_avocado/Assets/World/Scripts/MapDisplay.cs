@@ -18,6 +18,14 @@ public class MapDisplay : MonoBehaviour
         backgroundTilemap.transform.position = position;
     }
 
+    // Check if the cell at the given world position is filled by a wall tile
+    //public bool IsCellEmpty(Vector3 worldPos)
+    //{
+    //    wallTilemap.WorldToCell() {
+
+    //    }
+    //}
+
     // Create tiles for new chunk
     public void Create(Chunk chunk)
     {
