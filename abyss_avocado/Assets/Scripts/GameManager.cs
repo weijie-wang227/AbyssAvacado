@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,16 +11,29 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            Player.Instance.PlayerDied += OnPlayerDeath;
+        }
+    }
+
+    private void OnPlayerDeath(object sender, EventArgs e)
+    {
+        EndGame();
+    }
+
     public void StartGame()
     {
         RunStats.Instance.Reset();
-        SceneManager.LoadScene("abyss");
+        SceneManager.LoadScene("Main");
     }
 
     public void EndGame()

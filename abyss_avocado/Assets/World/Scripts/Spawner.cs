@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
         get
         {
             // Enemy spawn rate increases with number of chunks
-            return baseEnemySpawnRate + worldGenerator.ChunkCount * 2;
+            return baseEnemySpawnRate + worldGenerator.ChunkCount * 4;
         }
     }
 

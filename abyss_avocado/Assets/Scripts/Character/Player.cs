@@ -7,6 +7,7 @@ public class Player : DeathHandler
 {
     public static Player Instance { get; private set; }
     [field: SerializeField] public HealthManager HealthManager { get; private set; }
+    public event EventHandler PlayerDied;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Player : DeathHandler
 
     public override void HandleDeath()
     {
-        GameManager.Instance.EndGame();
+        print("Player died");
+        PlayerDied?.Invoke(this, EventArgs.Empty);
     }
 }
