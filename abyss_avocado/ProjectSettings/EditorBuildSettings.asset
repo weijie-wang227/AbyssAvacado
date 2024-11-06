@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 20cfbcb837b31234baa68aef37cab4e1
   - enabled: 1
-    path: Assets/Scenes/abyss.unity
+    path: Assets/Scenes/Main.unity
     guid: 373a13d206e0ae84fae430f883ea9eb2
   - enabled: 1
     path: Assets/Scenes/Death.unity
