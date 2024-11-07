@@ -1,6 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour
