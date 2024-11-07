@@ -12,7 +12,8 @@ public class Decay : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (InTargetLayers(collision.collider.gameObject.layer) && collision.collider.gameObject.TryGetComponent<HealthManager>(out var entity))
+        var obj = collision.collider.gameObject;
+        if (InTargetLayers(obj.layer) && obj.TryGetComponent<HealthManager>(out var entity))
         {
             entity.TakeDamage(999);
         }

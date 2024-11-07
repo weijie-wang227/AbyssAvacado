@@ -1561,11 +1561,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 243084553858599272, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_Size.x
-      value: 20
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 243084553858599272, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
+      propertyPath: m_Size.y
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 243084553858599272, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243084553858599272, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 243084553858599272, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4268460200304785924, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1573,11 +1585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4268460200304785924, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.3769
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 4268460200304785924, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4268460200304785924, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1611,6 +1623,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6091402599869124129, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
+      propertyPath: rate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455304756168728989, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0808619cfcfe1474d9662dd8069f405e, type: 3}
     - target: {fileID: 8687182813503455334, guid: 5e3b6a299dc22964ba2b76a19edc576f, type: 3}
       propertyPath: m_Name
       value: Decay
