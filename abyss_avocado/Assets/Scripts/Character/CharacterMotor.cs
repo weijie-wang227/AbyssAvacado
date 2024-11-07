@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class CharacterMotor : MonoBehaviour
@@ -13,6 +14,7 @@ public class CharacterMotor : MonoBehaviour
     private float jumpDelay;
     private Vector2 currentPos;
     private LayerMask mask;
+    private Animator animator;
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private AudioSource smashAudio;
@@ -24,13 +26,14 @@ public class CharacterMotor : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         mask = LayerMask.GetMask("Platform");
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         currentPos = transform.position;
         jumpDelay += Time.deltaTime;
-
+        animator.SetFloat("Speed", body.velocity.y);
         if (Physics2D.Linecast(currentPos - new Vector2(-0.25f, 0.5f), currentPos - new Vector2(0.25f, 0.5f), mask))
         {
             isGrounded = true;
